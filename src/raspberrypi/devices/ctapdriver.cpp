@@ -159,7 +159,7 @@ BOOL CTapDriver::Init()
 	if (access("/sys/class/net/rascsi_bridge", F_OK) != 0) {
 		LOGINFO("rascsi_bridge is not yet available");
 
-		LOGINFO("Checking which interface is available for creating the bridge");
+		LOGTRACE("Checking which interface is available for creating the bridge");
 		string interface;
 		for (auto it = interfaces.begin(); it != interfaces.end(); ++it) {
 			if (is_interface_up(*it)) {
