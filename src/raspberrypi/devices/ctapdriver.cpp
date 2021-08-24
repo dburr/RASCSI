@@ -161,8 +161,10 @@ BOOL CTapDriver::Init()
 
 		LOGINFO("Checking which interface is available for creating the bridge");
 		string interface;
-		for(auto it = begin(interfaces); it != end(interfaces); ++it) {
+		for(auto it = interfaces.begin(); it != interfaces.end(); ++it) {
 			if (is_interface_up(*it)) {
+				LOGTRACE(string("Interface " + (*it) + " is up").c_str());
+
 				interface = *it;
 				break;
 			}
@@ -170,6 +172,7 @@ BOOL CTapDriver::Init()
 				LOGTRACE(string("Interface " + (*it) + " is not up").c_str());
 			}
 		}
+
 		if (interface.empty()) {
 			LOGERROR("No interface is up, not creating bridge");
 			return FALSE;
