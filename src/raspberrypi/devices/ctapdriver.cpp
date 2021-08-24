@@ -37,7 +37,6 @@ using namespace std;
 //---------------------------------------------------------------------------
 CTapDriver::CTapDriver(const string& interfaces)
 {
-	LOGERROR(interfaces.c_str());
 	stringstream s(interfaces);
 	string interface;
 	while (getline(s, interface, ',')) {
