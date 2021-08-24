@@ -178,7 +178,7 @@ BOOL CTapDriver::Init()
 			return FALSE;
 		}
 
-		LOGINFO("Creating rascsi_bridge for interface %s...", interface.c_str());
+		LOGINFO("Creating rascsi_bridge for interface %s", interface.c_str());
 
 		LOGDEBUG("brctl addbr rascsi_bridge");
 		if ((ret = ioctl(br_socket_fd, SIOCBRADDBR, "rascsi_bridge")) < 0) {
