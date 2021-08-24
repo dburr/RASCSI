@@ -37,6 +37,7 @@ using namespace std;
 //---------------------------------------------------------------------------
 CTapDriver::CTapDriver(const string& interfaces)
 {
+	LOGERROR(interfaces.c_str());
 	stringstream s(interfaces);
 	string interface;
 	while (getline(s, interface, ',')) {
@@ -161,7 +162,7 @@ BOOL CTapDriver::Init()
 
 		LOGINFO("Checking which interface is available for creating the bridge");
 		string interface;
-		for(auto it = interfaces.begin(); it != interfaces.end(); ++it) {
+		for (auto it = interfaces.begin(); it != interfaces.end(); ++it) {
 			if (is_interface_up(*it)) {
 				LOGTRACE(string("Interface " + (*it) + " is up").c_str());
 
@@ -179,6 +180,7 @@ BOOL CTapDriver::Init()
 		}
 
 		LOGINFO("Creating rascsi_bridge for interface %s...", interface.c_str());
+
 		LOGDEBUG("brctl addbr rascsi_bridge");
 		if ((ret = ioctl(br_socket_fd, SIOCBRADDBR, "rascsi_bridge")) < 0) {
 			LOGERROR("Error: can't ioctl SIOCBRADDBR. Errno: %d %s", errno, strerror(errno));
