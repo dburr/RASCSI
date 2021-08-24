@@ -18,6 +18,7 @@
 
 #include <pcap/pcap.h>
 #include "filepath.h"
+#include <vector>
 #include <string>
 
 #ifndef ETH_FRAME_LEN
@@ -57,7 +58,7 @@ private:
 	pcap_dumper_t *m_pcap_dumper;
 
 	// Prioritized comma-separated list of interfaces to create the bridge for
-	std::string interfaces;
+	std::vector<std::string> interfaces;
 };
 
 #endif	// ctapdriver_h
