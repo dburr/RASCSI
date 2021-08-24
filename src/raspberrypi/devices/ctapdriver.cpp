@@ -106,7 +106,7 @@ static bool is_interface_up(const char *interface) {
 	return status;
 }
 
-BOOL CTapDriver::Init()
+BOOL CTapDriver::Init(const string& interfaces)
 {
 	LOGTRACE("%s",__PRETTY_FUNCTION__);
 

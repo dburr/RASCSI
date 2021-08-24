@@ -20,6 +20,7 @@
 #include "xm6.h"
 #include "os.h"
 #include "disk.h"
+#include <string>
 
 //===========================================================================
 //
@@ -49,7 +50,7 @@ public:
 	SCSIBR();
 	~SCSIBR();
 
-	void Init() override;
+	void Init(const string&) override;
 
 	bool Dispatch(SCSIDEV *) override;
 
@@ -114,4 +115,7 @@ private:
 	DWORD fsoutlen;								// File system access result buffer size
 	BYTE fsopt[0x1000000];							// File system access buffer
 	DWORD fsoptlen;								// File system access buffer size
+
+	// Prioritized comma-separated list of interfaces to create the bridge for
+	std::string interfaces;
 };
