@@ -35,9 +35,10 @@ using namespace std;
 //	Constructor
 //
 //---------------------------------------------------------------------------
-CTapDriver::CTapDriver()
+CTapDriver::CTapDriver(const string& interfaces)
 {
-	LOGTRACE("%s",__PRETTY_FUNCTION__);
+	this->interfaces = !interfaces.empty() ? interfaces : "eth0";
+
 	// Initialization
 	m_bTxValid = FALSE;
 	m_hTAP = -1;
@@ -106,7 +107,7 @@ static bool is_interface_up(const char *interface) {
 	return status;
 }
 
-BOOL CTapDriver::Init(const string& interfaces)
+BOOL CTapDriver::Init()
 {
 	LOGTRACE("%s",__PRETTY_FUNCTION__);
 
